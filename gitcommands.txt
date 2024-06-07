@@ -1,4 +1,5 @@
-
+Git
+===============================================
 git init [initializing git repository] 
 
 git status [ list all untracked files]
@@ -14,4 +15,6 @@ git push remotename branch [ local repository changes remote repository]
 git pull [remote repo changes local repo]
 
 git clone [remote repository exact copy localrepository]
+
+git remote -v [list all remote]
 
