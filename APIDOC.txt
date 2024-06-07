@@ -89,4 +89,64 @@ attributes:
 
      body:Nil
 
-     authentication:Token     
+     authentication:Token   
+
+
+
+
+7) api for adding a work
+
+     url:http://127.0.0.1:8000/api/customer/{id}/add_work
+
+     method :POST
+
+     body:{title,description,amount}
+
+
+8)api for adding work
+
+   urls:http://127.0.0.1:8000/api/customer/{id}/add_work
+
+   method:POST
+
+   body:{title,description,amount}
+
+
+#rest_framework>generics.py
+        # class createapiview
+
+#class WorkCreateView(CreateAPIView):    
+
+#    serializer_class=WorkSerializer
+
+#    def perform_create(self,serializer):
+
+#        id=self.kwargs.get("pk")
+
+#        customer_instance=Customer.objects.get(id=id)
+
+ #       serializer.save(customer=customer_instance)
+
+
+
+
+
+
+  @action(method=["post"],detail=True)
+    def add_work(self,request,*args,**kwargs):
+
+        id=kwargs.get("pk")
+
+        customer_instance=Customer.objects.get(id=id)
+
+        serializer=WorkSerializer(data=request.data)
+
+        if serializer.is_valid():
+
+            serializer.save(Customer=customer_instance)
+
+            return Response(data=serializer.data)
+        
+        else:
+
+            return Response(data=serializer.errors)
